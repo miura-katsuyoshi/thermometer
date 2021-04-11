@@ -1,0 +1,62 @@
+= Parameterized thermometer encoder in SystemVerilog
+MIURA Katsuyoshi <miura.katsuyoshi@gmail.com>
+v1.0, 2021-04-11
+:toc:
+:xrefstyle: short
+:imagesdir: Images
+:homepage: https://github.com/miura-katsuyoshi/thermometer
+
+== Description
+
+Parameterized thermometer encoder in SystemVerilog.
+
+This is a binary-to-thermoeter encoder implemented in SystemVerilog.  This circuit is combinational.  The bit width of the input _in_ can be spefified by the parameter _WIDTH_.  The bit width of the output _out_ is 2^_WIDTH_^-1.  When _in_ == 0, the all bits of _out_ become 0.  When _in_ == 2^_WIDTH_^-1, the all bits of _out_ become 1.
+
+== Input/Output
+
+[cols="1,1,1,1,3"]
+|===
+|Name |Direction |Width |Polarity |Description
+
+|in |input |WIDTH |- |binary code
+|out |output |2^_WIDTH_^-1 |positive |thermometer code
+|===
+
+== Parameter
+
+[cols="1,1,1,1,3"]
+|===
+|Name |Type |Width |Default value |Description
+
+|WIDTH | int | 32 |8 |The bit width of _in_.
+|===
+
+== Timing-chart
+
+A timing-chart of 3-bit thermometer encoder is shown in <<fig:timing_chart>>.
+
+[[fig:timing_chart]]
+.A timing-chart of 3-bit thermometer encoder.
+image::timing_chart.svg[]
+
+== Instantiation
+
+    counter #(
+        .WIDTH(8
+    )
+    counter_u0(
+        .clk(clk_signal),
+        .n_rst(n_rst_signal),
+        .n_en(n_en_signal),
+        .count(counter_wire),
+        .trig_out(trig_out_wire)
+    );
+
+== Test
+
+A testbench based on https://vunit.github.io/[VUnit] is included in this repository.  Execute the script _run.py_ with python interpreter.  How to run the script is depending on your system.
+
+ $ ./run.py
+ $ python run.py
+ $ python3 run.py
+ $ py run.py
