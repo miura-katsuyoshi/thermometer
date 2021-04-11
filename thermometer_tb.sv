@@ -8,8 +8,8 @@ module thermometer%WIDTH%_tb;
 
     parameter WIDTH = %WIDTH%;
 
-    logic [WIDTH-1:0] in;
-    logic [2**WIDTH-2:0] out;
+    logic [WIDTH-1:0] bin;
+    logic [2**WIDTH-2:0] thermometer;
 
     `TEST_SUITE begin
 
@@ -17,16 +17,16 @@ module thermometer%WIDTH%_tb;
         end
 
         `TEST_CASE_SETUP begin
-            in = 0;
+            bin = 0;
         end
 
         `TEST_CASE("normal_operation_test") begin
             int i;
 
             for(i=0; i<(2**WIDTH); i++) begin
-                in = i;
+                bin = i;
                 #10;
-                `CHECK_EQUAL(out, {(2**WIDTH-1){1'b1}}>>(2**WIDTH-1-i));
+                `CHECK_EQUAL(thermometer, {(2**WIDTH-1){1'b1}}>>(2**WIDTH-1-i));
             end
         end
 
@@ -43,8 +43,8 @@ module thermometer%WIDTH%_tb;
         .WIDTH(WIDTH)
     )
     `CUT (
-        .in(in),
-        .out(out)
+        .bin(bin),
+        .thermometer(thermometer)
     );
 
 endmodule
