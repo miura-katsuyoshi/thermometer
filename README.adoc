@@ -41,15 +41,12 @@ image::timing_chart.svg[]
 
 == Instantiation
 
-    counter #(
-        .WIDTH(8
+    thermometer #(
+        .WIDTH(4)
     )
-    counter_u0(
-        .clk(clk_signal),
-        .n_rst(n_rst_signal),
-        .n_en(n_en_signal),
-        .count(counter_wire),
-        .trig_out(trig_out_wire)
+    thermometer(
+        .in(in_signal),
+        .out(out_wire)
     );
 
 == Test
