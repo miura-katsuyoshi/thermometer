@@ -10,7 +10,7 @@ v1.0, 2021-04-11
 
 Parameterized thermometer encoder in SystemVerilog.
 
-This is a binary-to-thermoeter encoder implemented in SystemVerilog.  This circuit is combinational.  The bit width of the input _bin_ can be spefified by the parameter _WIDTH_.  The bit width of the output _out_ is 2^_WIDTH_^-1.  When _bin_ == 0, the all bits of _out_ become 0.  When _bin_ == 2^_WIDTH_^-1, the all bits of _out_ become 1.
+This is a binary-to-thermoeter encoder implemented in SystemVerilog.  This circuit is combinational.  The bit width of the input _bin_ can be spefified by the parameter _WIDTH_.  The bit width of the output _thermometer_ is 2^_WIDTH_^-1.  When _bin_ == 0, the all bits of _thermometer_ become 0.  When _bin_ == 2^_WIDTH_^-1, the all bits of _thermometer_ become 1.
 
 == Input/Output
 
@@ -19,7 +19,7 @@ This is a binary-to-thermoeter encoder implemented in SystemVerilog.  This circu
 |Name |Direction |Width |Polarity |Description
 
 |bin |input |WIDTH |- |binary code
-|out |output |2^_WIDTH_^-1 |positive |thermometer code
+|thermometer |output |2^_WIDTH_^-1 |positive |thermometer code
 |===
 
 == Parameter
@@ -46,7 +46,7 @@ image::timing_chart.svg[]
     )
     thermometer(
         .bin(bin_signal),
-        .out(out_wire)
+        .thermometer(thermometer_wire)
     );
 
 == Test
